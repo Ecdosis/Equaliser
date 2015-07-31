@@ -1,14 +1,26 @@
+[About](1) : [Appendices](9)
 ## Equaliser
-The [equaliser](https://github.com/Ecdosis/Equaliser) program is a commandline tool that checks all the element and atribute combinations in a set of XML files against a set of supplied patterns. Anything that does not any of the supplied patterns will be flagged as an error. Optionally the user can ask for all locations of errors to be recorded and printed out at the end. A further option allows for message to be printed suggesting remedies for the errors. The hard-wired defaults for patterns and remedies only work for the Harpur edition. In all other cases please supply replacements for the harpur.pat and harpur.rem files, and specify them when invoking the equaliser.
+The [equaliser](https://github.com/Ecdosis/Equaliser) program is a java commandline tool that checks all the element and atribute combinations in a set of XML files against a set of supplied patterns. This is useful as a preliminary check prior to import. Anything that does not match any of the supplied patterns will be flagged as an error. Optionally the user can ask for all locations of errors to be recorded and printed out at the end. A further option allows for message to be printed suggesting remedies for the errors. The hard-wired defaults for patterns and remedies only work for the Harpur edition. In all other cases please supply replacements for the harpur.pat and harpur.rem files, and specify them when invoking the equaliser.
 
 ### Installing
-Download equaliser from the [github site](https://github.com/Ecdosis/Equaliser). Unpack the .zip file and follow the instructions for running it in this README.
+Download equaliser from the [github site](https://github.com/Ecdosis/Equaliser). Unpack the .zip file and follow the instructions for running it below.
 
 ### Requirements
 The equaliser program requires a Java JRE version 1.7 or higher. You can install one from the [Oracle downloads site](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html).
 
 The commandline syntax is:
-    java -jar equaliser.jar [-R] -l] [-p pat-file] [-r remedy-file] xml-file-or-folder name
+    java -jar Equaliser.jar [-R] -l] [-p pat-file] [-r remedy-file] xml-file-or-folder
+
+### Locations
+By default equaliser does not print out the locations where the errors occur. Instead, only a summary of the errors found is printed. If locations are desired then the -l commandline option should be used. This will print out, for each error, the locations in the files where it was found.
+
+### Remedies
+By default equaliser does not print out suggested remedies for the errors. If these are wanted, then for each error type a remedy will be suggested if specified in the remedies file. If no remedy is available then it prints out the error and the word 'ask'. The command line option for priting remedies is -R.
+
+### Clean run
+If no errors are found then the message:
+    No errors found! 
+is printed.
 
 ### Remedy file format
 The remedy file specifies suggestions for specific errors or classes of error. Each remedy occupies one line, each line separated by exactly one newline character (\n). The format for each remedy is:
@@ -34,14 +46,3 @@ The pattern file specifies element plus attribute combinations that will *not* g
 5. If several attribute values may occur with the same attribute name the format is name=list, where 'list' is a bracketed list of attribute values separated by the vertical bar. e.g. type=(title|subtitle|parthead) is shorthand for type=title,type=subtitle,type=parthead.
 
 The example file is harpur.pat, which is hard-wired into the code in the case where no pattern file is supplied. The pattern file is specified with the -p option.
-
-### Locations
-By default equaliser does not print out the locations where the errors occur. Instead, only a summary of the errors found is printed. If locations are desired then the -l commandline option should be used. This will print out, for each error, the locations in the files where it was found.
-
-### Remedies
-By default equaliser does not print out suggested remedies for the errors. If these are wanted, then for each error type a remedy will be suggested if specified in the remedies file. If no remedy is available then it prints out the error and the word 'ask'. The command line option for priting remedies is -R
-
-### Clean run
-If no errors are found then the message:
-    No errors found! 
-is printed.
