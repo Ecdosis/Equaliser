@@ -17,7 +17,7 @@ public class Equaliser
     static String remedyFile = null;
     static boolean readArgs( String[] args )
     {
-        boolean sane = true;
+        boolean sane = args.length>0;
         for ( int i=0;i<args.length;i++ )
         {
             if ( args[i].startsWith("-") && args[i].length()>1 )
@@ -57,12 +57,13 @@ public class Equaliser
         }
         else
             System.out.println(
-                "usage: java Equaliser [-l] [-p patFile] "
-                +"[-r remedyFile] [-R] <folder or file>\n"
+                "usage: java -jar Equaliser.jar [-l] [-p patFile] "
+                +"[-r remedyFile] [-R] <xml-folder or xml-file>\n"
                 +"       -l: list locations for each error\n"
+                +"       -R: print remedy for each error\n"
                 +"       -p patFile: specify pattern file to override default\n"
-                +"       -r remedyFile: speify remedy file to override default\n"
-                +"       -R: print remedies for any faults");
+                +"       -r remedyFile: specify remedy file to override default"
+                );
     }
     
 }

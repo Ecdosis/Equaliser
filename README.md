@@ -1,12 +1,14 @@
 ## Equaliser
-The equaliser program processes a set of XML files checking all teh element and atribute combinations against a set of supplied patterns. Anything that does not match the patterned set will be flagged as an error. optionally the user can ask for all locations of errors to be recorded and printed out at the end. A further option allows for message to be printed suggesting remedies for the errors. Both the patterns and the remedies can be specified by supplying specially formatted files. The hard-wired defaults only work for the Harpur edition. In all other cases please supply replacements for the harpur.pat and harpur.rem files, and specify them when invoking the equaliser.
+The equaliser program is a commandline tool that checks all the element and atribute combinations in a set of XML files against a set of supplied patterns. Anything that does not any of the supplied patterns will be flagged as an error. Optionally the user can ask for all locations of errors to be recorded and printed out at the end. A further option allows for message to be printed suggesting remedies for the errors. The hard-wired defaults for patterns and remedies only work for the Harpur edition. In all other cases please supply replacements for the harpur.pat and harpur.rem files, and specify them when invoking the equaliser.
 
 ### Requirements
-The equaliser program requires a Java JRE version 1.7 or higher. The commandline syntax is:
+The equaliser program requires a Java JRE version 1.7 or higher. You can install one from the [Oracle downloads site](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html).
+
+The commandline syntax is:
     java -jar equaliser.jar [-R] -l] [-p pat-file] [-r remedy-file] xml-file-or-folder name
 
 ### Remedy file format
-The remedy file specifies suggestions for specific errors or classes of error. Each remedy occupies one line, each line separated by exactly one newline character (\n). The format of each remedy is:
+The remedy file specifies suggestions for specific errors or classes of error. Each remedy occupies one line, each line separated by exactly one newline character (\n). The format for each remedy is:
     element-name:attributes:message
 
 * 'element-name' is just the name of the element
@@ -23,10 +25,10 @@ The pattern file specifies element plus attribute combinations that will *not* g
 * 'attributes' is a comma-separated list of attribute-specifications. The attribute-specifications may take the following forms:
 
 1. A simple name=value pair. No quotes are allowed around the values. 
-2. If some name=value pairs are already specified for the pattern, the name=value pair -=* means that bare element name with no attributes will also match. 
+2. If some name=value pairs are already specified for the pattern, the name=value pair -=* means that the bare element name with no attributes is also permitted. 
 3. If no name=value attributes are specified at all this means that only the bare element name will match. 
 4. The wildcard * for an attribute value means that any attribute value will match the given attribute name. 
-5. If several attribute values may occur with the same attribute name the foramt is name=list, where 'list' is a bracketed list of attribute values separated by the vertical bar. e.g. type=(title|subtitle|parthead) is shorthand for type=title,type=subtitle,type=parthead.
+5. If several attribute values may occur with the same attribute name the format is name=list, where 'list' is a bracketed list of attribute values separated by the vertical bar. e.g. type=(title|subtitle|parthead) is shorthand for type=title,type=subtitle,type=parthead.
 
 The example file is harpur.pat, which is hard-wired into the code in the case where no pattern file is supplied. The pattern file is specified with the -p option.
 
@@ -34,4 +36,9 @@ The example file is harpur.pat, which is hard-wired into the code in the case wh
 By default equaliser does not print out the locations where the errors occur. Instead, only a summary of the errors found is printed. If locations are desired then the -l commandline option should be used. This will print out, for each error, the locations in the files where it was found.
 
 ### Remedies
-By default equaliser does not print out suggested remedies for the errors. If these are wanted, then for each error type a remedy will be suggeste dif specified in the remedies file. If no remedy is available it prints out the error and the word 'ask'. The command line option for priting remedies is -R
+By default equaliser does not print out suggested remedies for the errors. If these are wanted, then for each error type a remedy will be suggested if specified in the remedies file. If no remedy is available then it prints out the error and the word 'ask'. The command line option for priting remedies is -R
+
+### Clean run
+If no errors are found then the message:
+    No errors found! 
+is printed.
