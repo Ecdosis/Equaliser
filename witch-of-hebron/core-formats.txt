@@ -1,0 +1,44 @@
+#embedded graphics
+graphic url="xxx" 
+
+#paragraph formats
+div type="titlepage" 
+    type="dedication" 
+    type="poempart" 
+head type="title" 
+     type="subtitle" 
+     type="parthead" 
+lg  
+p
+trailer
+fw
+
+# poetic lines
+l 
+  rend="indent1" 
+  part="F" 
+
+# character formats
+hi rend="ul" 
+   rend="sc" 
+   rend="it" 
+   rend="dul" 
+   rend="ss" 
+   rend="brackets"
+   rend="erasure"
+   rend="pencil"
+   rend="del-pencil"
+   rend="double-marginal" 
+   rend="single-marginal" 
+emph
+unclear 
+sic 
+expan 
+metamark 
+author
+date
+
+#dividers
+divider type="single" 
+        rend="diamond" 
+        type="double" 

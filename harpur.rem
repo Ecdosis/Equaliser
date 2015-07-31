@@ -1,0 +1,8 @@
+rdg:rend=brackets:remove this attribute
+divider:rend=diamond:normalise unrecgonised divider type
+lb::replace empty lb with CR in prose and <l>...</l> in poetry
+emph:rend=*:replace emph with hi
+hi::hi requires rend attribute
+note:type=source:remove note, type source not allowed
+note::supply a valid resp attribute
+div:type=poem:carefully remove this <div> and matching </div>

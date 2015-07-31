@@ -1,0 +1,44 @@
+<TEI><body><text>
+<!--+++ H689m-->
+
+<!--*** THE WITCH OF HEBRON-->
+
+<note resp="MJS" type="source">Mitchell Library, Harpur MS A87-2, pp.701-702</note>
+<note resp="MJS">Two non-contiguous fragments from Part VI. The version in A97 has been consulted in deciphering this difficult hand. For other fragments from Part VI in this manuscript see <ref target="H689l">H689l</ref></note>
+<note resp="DS">Revised 7/1/15</note> 
+
+<pb n="701" facs="/corpix/english/harpur/h689/h689m/290"/>
+<!--h689i ll.1358-->
+<l>Had quashed a bargain that was quite complete</l>
+<l>Save in the <del>hand over</del><add>final payment</add> of the gold</l>
+<l><del><unclear/></del> Which some <del>old</del> men cursing had delayed</l>
+<l>And in which luckless circumstance, 'twas plain</l>
+<l>That both my admirable parents saw</l>
+<l>The unkindest cut of all.</l>
+
+<pb n="702" facs="/corpix/english/harpur/h689/h689m/291"/>
+<!--h689i ll.1395-->
+<l>My worthy parents tenderly embraced me</l>
+<l>With many tears, protesting that I was</l>
+<l>The life light of their eyes—their rose of joy;</l>
+<l>Then stretched their hands <del>of</del><add>out</add> for the Persian's gold</l>
+<l>And hurried off to tell it o'er in secret—</l>
+<l>The dear recovered <del>hoard</del><add>treasure</add> they so late</l>
+<l>Had mourned, as lost for ever. On that night</l>
+<l>I was packed carefully on a camel's back</l>
+<l>Beside a case of porcelain pipes and jimcracks,</l>
+<l>And carried Persia-ward, by stages long,</l>
+<l>From the circassian mountains.</l>
+
+<l part="F">At the Court</l>
+
+<note resp="DS">Moved from h68l, because it already occurs in another fragment there, so it must belong to another version. Since h689m is also a collection of ragments from Part VI this seems an appropriate place.</note>
+
+<!--h689i ll.1464ff-->
+<pb n="700" facs="/corpix/english/harpur/h689/h689m/289"/>
+<note resp="DS"><ref target="http://setis.library.usyd.edu.au/ozedits/harpur/A90/00000157">A verbatim fragment of A90</ref>: a precursor? Also in h689l.</note>
+<l>I swam into his presence (though indeed</l>
+<l>My hid feet rowed me) graceful as a swan!</l>
+<divider type="single"/>
+
+</text></body></TEI>

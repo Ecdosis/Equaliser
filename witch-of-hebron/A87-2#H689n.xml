@@ -1,0 +1,16 @@
+<TEI><body><text>
+<!--*** THE WITCH OF HEBRON-->
+
+<note resp="MJS" type="source">Mitchell Library, Harpur MS A87-2, p.700.</note>
+<note resp="DS">Created 7/1/15</note> 
+
+<pb n="700" facs="/corpix/english/harpur/h689/h689n/289"/>
+<note resp="MJS">Last two lines of the poem. The lines that follow, and those on pp. 699, 701, 702, 745 and 746, would seem to be draft revisions of a complete version that has been lost except for these two lines. See <ref target="H689k">H689k</ref>, <ref target="H689l">H689l</ref> and <ref target="H689m">H689m</ref> for these fragments.</note>
+<!--h689i ll.1960ff.-->
+<l part="F"><del>What are all the things</del><add><del>what</del><add>What</add> indeed are all things, even those</add></l>
+<l>That seem most solid—Dust and Air at last!</l>
+
+<divider type="single"/>
+
+</text></body></TEI>
+
