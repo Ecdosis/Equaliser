@@ -1,6 +1,6 @@
 [About](1) : [Appendices](9)
 ## Equaliser
-The [equaliser](https://github.com/Ecdosis/Equaliser) program is a java commandline tool that checks all the element and atribute combinations in a set of XML files against a set of supplied patterns. This is useful as a preliminary check prior to import. Anything that does not match any of the supplied patterns will be flagged as an error. Optionally the user can ask for all locations of errors to be recorded and printed out at the end. A further option allows for message to be printed suggesting remedies for the errors. The hard-wired defaults for patterns and remedies only work for the Harpur edition. In all other cases please supply replacements for the harpur.pat and harpur.rem files, and specify them when invoking the equaliser.
+The [equaliser](https://github.com/Ecdosis/Equaliser) program is a java commandline tool that checks all the element and attribute combinations in a set of XML files against a set of supplied patterns. This is useful as a preliminary check prior to import. Anything that does not match any of the supplied patterns will be flagged as an error. Optionally the user can ask for all locations of errors to be recorded and printed out at the end. A further option allows for a message to be printed suggesting remedies for the errors. The hard-wired defaults for patterns and remedies only work for the Harpur edition. In all other cases please supply replacements for the harpur.pat and harpur.rem files, and specify them when invoking the equaliser.
 
 ### Installing
 Download equaliser from the [github site](https://github.com/Ecdosis/Equaliser). Unpack the .zip file and follow the instructions for running it below.
@@ -24,6 +24,7 @@ is printed.
 
 ### Remedy file format
 The remedy file specifies suggestions for specific errors or classes of error. Each remedy occupies one line, each line separated by exactly one newline character (\n). The format for each remedy is:
+
     element-name:attributes:message
 
 * 'element-name' is just the name of the element
@@ -34,15 +35,15 @@ The example remedy file is harpur.rem, which is hard-wired into the code in case
 
 ### Pattern file format
 The pattern file specifies element plus attribute combinations that will *not* generate errors. Each pattern occupies one line, each line being separated by a newline character (\n). The format of a pattern is:
-   element-name:attributes:
+
+    element-name:attributes
 
 * 'element-name' is the name of the permitted element. 
 * 'attributes' is a comma-separated list of attribute-specifications. The attribute-specifications may take the following forms:
-
-1. A simple name=value pair. No quotes are allowed around the values. 
-2. If some name=value pairs are already specified for the pattern, the name=value pair -=* means that the bare element name with no attributes is also permitted. 
-3. If no name=value attributes are specified at all this means that only the bare element name will match. 
-4. The wildcard * for an attribute value means that any attribute value will match the given attribute name. 
-5. If several attribute values may occur with the same attribute name the format is name=list, where 'list' is a bracketed list of attribute values separated by the vertical bar. e.g. type=(title|subtitle|parthead) is shorthand for type=title,type=subtitle,type=parthead.
+    1. A simple name=value pair. No quotes are allowed around the values. 
+    2. If some name=value pairs are already specified for the pattern, the name=value pair -=* means that the bare element name with no attributes is also permitted. 
+    3. If no name=value attributes are specified at all this means that only the bare element name will match. 
+    4. The wildcard * for an attribute value means that any attribute value will match the given attribute name. 
+    5. If several attribute values may occur with the same attribute name the format is name=list, where 'list' is a bracketed list of attribute values separated by the vertical bar. e.g. type=(title|subtitle|parthead) is shorthand for type=title,type=subtitle,type=parthead.
 
 The example file is harpur.pat, which is hard-wired into the code in the case where no pattern file is supplied. The pattern file is specified with the -p option.

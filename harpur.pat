@@ -15,7 +15,7 @@ author:
 date:
 sic:
 pb:facs=*,n=*
-note:name=*,resp=(Harpur|MJS|DS|Sydney Journal|Anonymous)
+note:name=*,resp=(Harpur|MJS|DS|Sydney Journal|AJ|Anonymous)
 body:
 add:
 del:

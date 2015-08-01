@@ -22,7 +22,8 @@ public class Remedy {
         "hi::hi requires rend attribute",
         "note:type=source:remove note, type source not allowed",
         "note::supply a valid resp attribute",
-        "div:type=poem:carefully remove this <div> and matching </div>"
+        "div:type=poem:carefully remove this <div> and matching </div>",
+        "l:type=F:replace type with part"
     };
     /**
      * Initialise a single remedy from its definition in 3 parts

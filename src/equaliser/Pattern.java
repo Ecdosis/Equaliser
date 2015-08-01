@@ -30,7 +30,7 @@ public class Pattern
     "date:",
     "sic:",
     "pb:facs=*,n=*",
-    "note:name=*,resp=(Harpur|MJS|DS|Sydney Journal|Anonymous)",
+    "note:name=*,resp=(Harpur|MJS|DS|AJ|Sydney Journal|Anonymous)",
     "body:",
     "add:",
     "del:",
