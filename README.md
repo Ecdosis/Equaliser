@@ -9,7 +9,7 @@ Download equaliser from the [github site](https://github.com/Ecdosis/Equaliser).
 The equaliser program requires a Java JRE version 1.7 or higher. You can install one from the [Oracle downloads site](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html).
 
 The commandline syntax is:
-    java -jar Equaliser.jar [-R] -l] [-p pat-file] [-r remedy-file] xml-file-or-folder
+    java -jar Equaliser.jar [-R] [-l] [-p pat-file] [-r remedy-file] xml-file-or-folder
 
 ### Locations
 By default equaliser does not print out the locations where the errors occur. Instead, only a summary of the errors found is printed. If locations are desired then the -l commandline option should be used. This will print out, for each error, the locations in the files where it was found.
@@ -45,5 +45,6 @@ The pattern file specifies element plus attribute combinations that will *not* g
     3. If no name=value attributes are specified at all this means that only the bare element name will match. 
     4. The wildcard * for an attribute value means that any attribute value will match the given attribute name. 
     5. If several attribute values may occur with the same attribute name the format is name=list, where 'list' is a bracketed list of attribute values separated by the vertical bar. e.g. type=(title|subtitle|parthead) is shorthand for type=title,type=subtitle,type=parthead.
+    6. An attribute name beginning with '!' is required. The '!' will be removed.
 
 The example file is harpur.pat, which is hard-wired into the code in the case where no pattern file is supplied. The pattern file is specified with the -p option.

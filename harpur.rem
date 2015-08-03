@@ -1,9 +1,12 @@
 rdg:rend=brackets:remove this attribute
 divider:rend=diamond:normalise unrecgonised divider type
 lb::replace empty lb with CR in prose and <l>...</l> in poetry
-emph:rend=*:replace emph with hi
+emph:rend=*:replace emph with hi, enclose in empty <emph>
 hi::hi requires rend attribute
 note:type=source:remove note, type source not allowed
 note::supply a valid resp attribute
 div:type=poem:carefully remove this <div> and matching </div>
 l:type=F:replace type with part
+add:place=margin:remove this attribute
+add:n=3:recast nested <add> as <app><rdg>...</rdg>...</app> instead
+q:type=Hpoem,id=*:remove attributes -- not needed

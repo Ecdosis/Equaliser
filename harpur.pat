@@ -14,8 +14,8 @@ metamark:target=*,-=*
 author:
 date:
 sic:
-pb:facs=*,n=*
-note:name=*,resp=(Harpur|MJS|DS|Sydney Journal|AJ|Anonymous)
+pb:!facs=*,!n=*
+note:name=*,resp=(Harpur|MJS|DS|Sydney Journal|AJ|Weekly Register|Barton|Anonymous)
 body:
 add:
 del:

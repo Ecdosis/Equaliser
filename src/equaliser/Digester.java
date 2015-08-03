@@ -1,7 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This file is part of Equaliser.
+ *
+ *  Equaliser is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Equaliser is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Equaliser.  If not, see <http://www.gnu.org/licenses/>.
+ *  (c) copyright Desmond Schmidt 2015
  */
 package equaliser;
 import java.io.FileInputStream;
@@ -9,6 +21,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Iterator;
+import javax.swing.JTextArea;
 /**
  * This class manages the digesting of XML files to determine which 
  * elements and attributes are present and to compare them to a set 
@@ -20,6 +33,7 @@ public class Digester
     HashMap<String,Pattern> matches;
     HashMap<String,Remedy[]> remedies;
     HashMap<String,Error[]> errors;
+    JTextArea console;
     /**
      * Read the patterns form a file
      * @param patFile the path to the patterns
@@ -87,10 +101,13 @@ public class Digester
     /**
      * Create a digester 
      * @param path 
+     * @param console the console to print to or null for the terminal
      */
-    public Digester( String path, String patFile, String remedyFile )
+    public Digester( String path, String patFile, String remedyFile, 
+        JTextArea console )
     {
         File f = new File(path);
+        this.console = console;
         this.matches = new HashMap<String,Pattern>();
         this.remedies = new HashMap<String,Remedy[]>();
         String[] pats = readPatFile(patFile);
@@ -165,11 +182,23 @@ public class Digester
         }
         return null;
     }
+    void print( String text )
+    {
+        if ( console == null )
+            System.out.print(text);
+        else
+            console.append(text);
+    }
+    void println( String text )
+    {
+        print(text);
+        print("\n");
+    }
     void printFound()
     {
         if ( errors.size() > 0 )
         {
-            System.out.println("Pattern errors:");
+            print("Pattern errors:");
             Set<String> keys = errors.keySet();
             Iterator<String> iter = keys.iterator();
             while ( iter.hasNext() )
@@ -180,38 +209,38 @@ public class Digester
                 {
                     if ( i==0 )
                     {
-                        System.out.print(key+" ");
-                        System.out.println(list[i].toString());
+                        print(key+" ");
+                        println(list[i].toString());
                     }
                     else if ( list[i].numAttrs()>0 )
                     {
                         for ( int j=0;j<key.length();j++ )
                             System.out.print(" ");
-                        System.out.print(" ");
-                        System.out.println( list[i].toString());
+                        print(" ");
+                        println( list[i].toString());
                     }
                     else
                     {
                         for ( int j=0;j<key.length();j++ )
-                            System.out.print(" ");
-                        System.out.println("[no attrs]");
+                            print(" ");
+                        println("[no attrs]");
                     }
                     if ( Equaliser.printLocations )
                     {
                         Location[] locs = list[i].getLocations();
                         for ( int k=0;k<locs.length;k++ )
                         {
-                            System.out.print("          ");
-                            System.out.println(locs[k].toString());
+                            print("          ");
+                            println(locs[k].toString());
                         }
                     }
                 }
                 if ( list.length==0 )
-                    System.out.println(key);
+                    println(key);
             }
             if ( errors.size()>0 && Equaliser.printRemedies )
             {
-                System.out.println("Suggested remedies:");
+                println("Suggested remedies:");
                 keys = errors.keySet();
                 iter = keys.iterator();
                 while ( iter.hasNext() )
@@ -225,19 +254,19 @@ public class Digester
                         if ( r != null )
                         {
                             if ( err.length()==0 )
-                                System.out.println(key+": "+r.getMessage());
+                                println(key+": "+r.getMessage());
                             else
-                                System.out.println(key+" "+err+": "+r.getMessage());
+                                println(key+" "+err+": "+r.getMessage());
                         }
                         else if ( err.length()==0 )
-                            System.out.println(key+": ask");
+                            println(key+": ask");
                         else
-                            System.out.println(key+" "+err+": ask");
+                            println(key+" "+err+": ask");
                     }
                 }
             }
         }
         else
-            System.out.println("No errors found!");
+            println("No errors found!");
     }
 }

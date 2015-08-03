@@ -1,11 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This file is part of Equaliser.
+ *
+ *  Equaliser is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Equaliser is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Equaliser.  If not, see <http://www.gnu.org/licenses/>.
+ *  (c) copyright Desmond Schmidt 2015
  */
 package equaliser;
 import java.util.HashMap;
 import org.xml.sax.Attributes;
+import java.util.Set;
+import java.util.Iterator;
 /**
  * A Pattern is an element with some optional attributes and a template
  * @author desmond
@@ -13,24 +27,24 @@ import org.xml.sax.Attributes;
 public class Pattern 
 {
     static String[] defaultSet = 
-    {"div:type=(titlepage|dedication|poempart|song|colophon)",
-    "head:type=(title|subtitle|parthead),-=*",
+    {"div:!type=(titlepage|dedication|poempart|song|colophon)",
+    "head:type=(title|subtitle|parthead)",
     "lg:",
     "p:",
     "trailer:",
     "fw:",
     "q:",
-    "l:rend=(indent1|indent2|indent3|indent4|indent5),part=F,-=*",
-    "hi:rend=(ul|sc|b|it|dul|ss|erasure|bl|pencil|del-pencil)",
+    "l:rend=(indent1|indent2|indent3|indent4|indent5),part=F",
+    "hi:!rend=(ul|sc|b|it|dul|ss|erasure|bl|pencil|del-pencil)",
     "emph:",
     "unclear:",
     "expan:",
-    "metamark:target=*,-=*",
+    "metamark:target=*",
     "author:",
     "date:",
     "sic:",
-    "pb:facs=*,n=*",
-    "note:name=*,resp=(Harpur|MJS|DS|AJ|Sydney Journal|Anonymous)",
+    "pb:!facs=*,!n=*",
+    "note:name=*,!resp=(Harpur|MJS|DS|AJ|Sydney Journal|Barton|Weekly Register|Anonymous)",
     "body:",
     "add:",
     "del:",
@@ -132,25 +146,53 @@ public class Pattern
         }
         return false;
     }
+    private boolean hasRequired()
+    {
+        Set<String> keys = attributes.keySet();
+        Iterator<String> iter = keys.iterator();
+        while ( iter.hasNext() )
+        {
+            if ( iter.next().startsWith("!") )
+                return true;
+        }
+        return false;
+    }
     boolean matches( Attributes atts )
     {
         boolean matched = false;
         if ( atts.getLength()==0 )
         {
-            return attributes.containsKey("-");
+            return attributes.size()==0||!hasRequired();
         }
-        else
+        else    // attributes must be present if required and must match
         {
-            for ( int i=0;i<atts.getLength();i++ )
+            Set<String> keys = this.attributes.keySet();
+            Iterator<String> iter = keys.iterator();
+            while ( iter.hasNext() )
             {
-                String name = atts.getLocalName(i);
-                String value = atts.getValue(i); 
-                if ( attributes.containsKey(name) 
-                    && matchValue(value,attributes.get(name)) )
+                String key = iter.next();
+                String[] values = attributes.get(key);
+                boolean required = false;
+                boolean found = false;
+                if ( key.startsWith("!") )
                 {
-                    matched = true;
+                    key = key.substring(1);
+                    required = true;
                 }
-                else
+                for ( int i=0;i<atts.getLength();i++ )
+                {
+                    String name = atts.getLocalName(i);
+                    String value = atts.getValue(i); 
+                    if ( name.equals(key) )
+                    {
+                        if ( matchValue(value,values) )
+                            matched = true;
+                        else if ( matched )
+                            matched = false;
+                        found = true;
+                    }
+                }
+                if ( required && !found )
                     matched = false;
             }
         }
